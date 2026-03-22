@@ -115,3 +115,69 @@
       color: white;
       margin-top: 40px;
     }
+
+/* 📱 Мобильная версия */
+@media (max-width: 768px) {
+
+  header {
+    padding: 25px 15px;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  header p {
+    font-size: 14px;
+  }
+
+  .container {
+    margin: 15px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .card h2 {
+    font-size: 18px;
+  }
+
+  .info {
+    font-size: 14px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  select, button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* 📦 Фичи в колонку */
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  /* 📅 Дни компактнее */
+  .day {
+    padding: 12px;
+  }
+
+  .day h3 {
+    font-size: 16px;
+  }
+
+  .day p {
+    font-size: 14px;
+  }
+
+  footer {
+    font-size: 14px;
+    padding: 15px;
+  }
+}
