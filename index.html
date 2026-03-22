@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планувальник подорожей</title>
+</head>
+<body>
+<header>
+  <h1>Планувальник подорожей</h1>
+  <p>Створи ідеальний маршрут по місту за кілька секунд</p>
+</header>
+
+<div class="container">
+
+  <div class="info">
+    <p>
+      Плануєш подорож, але не знаєш, куди піти? Наш сервіс допоможе тобі швидко створити маршрут.
+      Просто обери місто та кількість днів — і отримай готовий план з цікавими місцями та закладами.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Переваги сервісу</h2>
+    <div class="features">
+      <div class="feature-box">
+        <h3>Швидко</h3>
+        <p>Отримай план за секунди</p>
+      </div>
+      <div class="feature-box">
+        <h3>Зручно</h3>
+        <p>Простий та зрозумілий інтерфейс</p>
+      </div>
+      <div class="feature-box">
+        <h3>Готово</h3>
+        <p>Не потрібно думати, куди йти</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Обери параметри подорожі</h2>
+
+    <label>Місто:</label>
+    <select id="city">
+      <option value="lviv">Львів</option>
+      <option value="kyiv">Київ</option>
+      <option value="odessa">Одеса</option>
+      <option value="kharkiv">Харків</option>
+      <option value="dnipro">Дніпро</option>
+    </select>
+
+    <label>Кількість днів:</label>
+    <select id="days">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+    </select>
+
+    <button onclick="generatePlan()">Показати маршрут</button>
+  </div>
+
+  <div class="card">
+    <h2>Твій маршрут</h2>
+    <div id="result" class="result"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Планувальник подорожей</p><br>
+  <p>Dev:Azarenko O</p>
+</footer>
+
+<script>
+const programs = {
+  lviv: [
+    "Площа Ринок, Будинок вчених",
+    "Львівська Опера, Палац Потоцьких",
+    "Личаківський цвинтар, Стрийський парк",
+    "Львіварня, прогулянка",
+    "Юрашки",
+    "Аптека-музей",
+    "Палац мистецтв"
+  ],
+  kyiv: [
+    "Майдан Незалежності, Батьківщина-мати",
+    "Скляний міст, Труханів острів",
+    "Андріївська церква,Пейзажна алея",
+    "Музей Голодомору, Музей Чорнобиля",
+    "Ocean Plaza, River Mall",
+    "Музей авіації, бібліотека Вернадського",
+    "Софіівський собор,Михайливський монастир"
+  ],
+  odessa: [
+    "Дерибасівська, Міський сад",
+    "Потьомкінські сходи",
+    "Аркадія",
+    "Оперний театр",
+    "Привоз",
+    "Музей мистецтва",
+    "Траса здоров'я"
+  ],
+  kharkiv: [
+    "Площа Свободи",
+    "Сад Шевченка",
+    "Парк Горького",
+    "Екопарк Фельдмана",
+    "Художній музей",
+    "Саржин Яр",
+    "Ботанічний сад"
+  ],
+  dnipro: [
+    "Набережна",
+    "Монастирський острів",
+    "Парк Шевченка",
+    "Музей АТО",
+    "Мост-Сіті",
+    "Художній музей",
+    "Rocket Park"
+  ]
+};
+
+const food = {
+  lviv: [
+    "Криївка",
+    "Реберня",
+    "Cukor",
+    "Veronika",
+    "Пструг",
+    "Selyam",
+    "Epic Cheeseburger"
+  ],
+  kyiv: [
+    "Пузата Хата",
+    "Very Well Cafe",
+    "The Burger",
+    "Trattoria",
+    "Ocean Plaza",
+    "Blur Coffee",
+    "Druzi Cafe"
+  ],
+  odessa: [
+    "MAMAN",
+    "Moloko",
+    "Foundation Coffee",
+    "Tishina",
+    "Компот",
+    "Дача",
+    "Fish Market"
+  ],
+  kharkiv: [
+    "Nasha Dacha",
+    "Dubrovsky",
+    "Гастропаб",
+    "Sweeter",
+    "Mafia",
+    "Argentina Grill",
+    "Coffee Door"
+  ],
+  dnipro: [
+    "Reporter",
+    "Coast",
+    "Felicita",
+    "Varburger",
+    "Puri Chveni",
+    "Artist",
+    "DoubleDecker"
+  ]
+};
+
+function generatePlan() {
+  const city = document.getElementById("city").value;
+  const days = document.getElementById("days").value;
+  const result = document.getElementById("result");
+
+  result.innerHTML = "";
+
+  for (let i = 0; i < days; i++) {
+    result.innerHTML += `
+      <div class="day">
+        <h3> День ${i + 1}</h3>
+        <p> ${programs[city][i] || "Вільний день"}</p>
+        <p> ${food[city][i] || "На вибір"}</p>
+      </div>
+    `;
+  }
+}
+</script>
+
+</body>
+</html>
